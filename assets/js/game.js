@@ -1,19 +1,30 @@
 document.getElementById('start-button').addEventListener('click', startGame)
 
+const btn = document.getElementById('start-button');
+
+btn.addEventListener('click', () => {
+  // hide button
+  btn.style.display = 'none';
+
+  // show div
+  const box = document.getElementById('game');
+});
+
+
 // Kaboom initialisation settings
 function startGame() {
     kaboom({
         global: true,
-        fullscreen: true,
-        scale: 2,
-        debug: true,
+        width: 640,
+        height: 480,
+        canvas: document.querySelector("#game"),
         clearColor: [0, 0, 1, 1],
     })
 
     const MOVE_SPEED = 140
-    const JUMP_FORCE = 380
+    const JUMP_FORCE = 400
     const BIG_JUMP_FORCE = 500
-    let CURRENT_JUMP_FORCE = 380
+    let CURRENT_JUMP_FORCE = 400
     let score = 0
     let level = 0
     const ENEMY_SPEED = 20
@@ -416,7 +427,7 @@ function startGame() {
                 sprite('lose'),
                 solid(),
                 origin('center'),
-                scale(0.1),
+                scale(0.2),
                 pos(width() / 2,
                     height() / 2),
             ]),
@@ -426,7 +437,7 @@ function startGame() {
                 text('You scored ' + score + '\n\nPress space to play again', 15),
                 origin('center'),
                 pos(320,
-                    320)
+                    450)
             ]);
 
         // restarts the game after death with spacebar 
